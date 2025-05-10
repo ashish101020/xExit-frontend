@@ -22,7 +22,7 @@ const QuestionnierePanel = () => {
   const fetchRes = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/admin/exit_responses", {
+        `${API_BASE_URL}/api/admin/exit_responses`, {
           headers: { Authorization: `Bearer ${token}` },
         } );
 

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../api/api";
+
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Select, MenuItem, Button, TextField } from "@mui/material";
 
 const AdminDashboard = () => {
@@ -13,7 +15,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchResignations = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/admin/resignations", {
+        const response = await axios.get(`${API_BASE_URL}/api/admin/resignations`, {
           headers: { Authorization: localStorage.getItem("token") },
         });
         setResignations(response.data);
@@ -44,7 +46,7 @@ const AdminDashboard = () => {
 
     try {
       await axios.put(
-        "http://localhost:8080/api/admin/conclude_resignation",
+        `${API_BASE_URL}/api/admin/conclude_resignation`,
         { resignationId: id, approved: status === "approved", lwd },
         { headers: { Authorization: localStorage.getItem("token") } }
       );
